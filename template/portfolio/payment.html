@@ -1,0 +1,46 @@
+{% extends "Portfolio/home.html" %}
+{% block content %}
+
+<form >
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">First Name:</label>
+      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Last Name:</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Annual Income:</label>
+        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Amount Paid:</label>
+        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{ data.payment_price }}" readonly>
+      </div>
+    <button id="rzp-button1" type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "rzp_test_reulDqSoRIOzjh", // Enter the Key ID generated from the Dashboard
+    "amount": " {{ payment.amount }}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Investments", //your business name
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": "{{ payment.id }}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+{% endblock  %}

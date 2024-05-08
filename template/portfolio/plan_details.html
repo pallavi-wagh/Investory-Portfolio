@@ -1,0 +1,16 @@
+{% extends "Portfolio/home.html" %}
+{% load static %}
+{% block content %}
+
+<div class="card mb-3">
+    <img src="{% static 'images/desc_image.jpg' %}" class="card-img-top" alt="..." height="250px" width="100%">
+    <div class="card-body">
+      <h3 class="card-title">{{data.name }}</h3>
+      <p class="card-text">Annual Return - Rs. {{data.annual_return}}/-</p>
+      <p class="card-text">payment Price - Rs. {{data.payment_price}}/-</p>
+      <p class="card-text">{{ data.description }}</p>
+      <a href="{% url 'payment_page' data.id %}" class="btn btn-primary">Buy Plan</a>
+    </div>
+  </div>
+</div>
+{% endblock  %}

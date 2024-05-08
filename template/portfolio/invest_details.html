@@ -1,0 +1,22 @@
+{% extends "Portfolio/home.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row mt-5">
+     {% for i in data %}
+     <div class="col-md-3">
+       <div class="card">
+         <img src="{% static 'images/1.jpg' %}" class="card-img-top" alt="..." height="250px;!important">
+         <div class="card-body">
+           <h5 class="card-title">{{i.name}}</h5>
+           <p class="card-text">Annual Return -Rs.{{i.annual_return}}/-</p>
+           <p class="card-text">payment Price -Rs.{{i.payment_price}}/-</p>
+           <a href="{% url 'show_plan' i.id %}" class="btn btn-primary">View Plan</a>
+         </div>
+       </div>
+     </div>
+     {% endfor %}
+    </div>
+  </div>
+{% endblock %}

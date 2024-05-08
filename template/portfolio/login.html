@@ -1,0 +1,15 @@
+{% extends 'portfolio/home.html' %}
+{% block content %}
+<div class="text-justify ms-5 mt-5">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="" class="form-label col-sm-2 ">Username: </label>
+        <input type="text" name="username" class="form-control small-input">
+        <label for="" class="form-label col-sm-2">Password: </label>
+        <input type="password" name="password" class="form-control small-input"><br>
+        <a href="{% url 'register' %}">Don't have an account</a><br>
+        <input type="submit" name="" id="" value="Submit" class="sub-btn mt-2 text-center">
+        
+    </form>
+</div>
+{% endblock %}
